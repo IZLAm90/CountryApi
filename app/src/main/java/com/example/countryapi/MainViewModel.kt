@@ -13,17 +13,20 @@ import retrofit2.Response
 
 class MainViewModel(private val repository: Repository): ViewModel() {
 
-    var myResponse: MutableLiveData<Response<Cities>> = MutableLiveData()
+    var myResponse: MutableLiveData<Response<ArrayList<Cities>>> = MutableLiveData()
+    var myResponseCountry: MutableLiveData<Response<ArrayList<Countres>>> = MutableLiveData()
 
-//    fun getPost(){
-//        viewModelScope.launch {
-//            val response = repository.getPost()
-//            myResponse.value = response
-//        }
-//    }
-    fun getPostCities(){
+    fun getPost(){
         viewModelScope.launch {
-            val response =repository.getPostCities()
+            val response = repository.getPost()
+            myResponseCountry.value = response
+            Log.d("response",response.message().toString())
+
+        }
+    }
+    fun getPostCities(cFlag:String){
+        viewModelScope.launch {
+            val response =repository.getPostCities(cFlag =cFlag)
             myResponse.value = response
             Log.d("response",response.message().toString())
         }

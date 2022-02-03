@@ -10,12 +10,12 @@ import retrofit2.Response
 
 class Repository {
 
-    suspend fun getPost(): Response<Countres> {
-        return RetrofitInstance.api.getPost(API_KEY)
+    suspend fun getPost(): Response<ArrayList<Countres>> {
+        return RetrofitInstance.api.getPost()
     }
- suspend fun getPostCities(): Response<Cities> {
-     Log.d("api key", API_KEY2)
-        return RetrofitInstance.api.getPostcity(API_KEY2)
+ suspend fun getPostCities(cFlag:String): Response<ArrayList<Cities>> {
+        //  Log.d("api key", API_KEY2)
+        return RetrofitInstance.api.getPostcity(cFlag = cFlag)
     }
 
 

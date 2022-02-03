@@ -7,11 +7,13 @@ import retrofit2.http.*
 
 interface SimpleApi {
 
-    @GET("countries")
-    suspend fun getPost(@Query("X-CSCAPI-KEY") api_key:String ): Response<Countres>
+    @Headers("X-CSCAPI-KEY: RU5uaVpqekRZZlBsVkhRY2ZSTzJNOHNzSGk3U3BpRmdURmpRZ2ZNMA==")
+    @GET("v1/countries")
+    suspend fun getPost(): Response<ArrayList<Countres>>
 
-    @GET("v1/countries/EG/cities")
-    suspend fun getPostcity(@Query("X-CSCAPI-KEY") api_key:String):Response<Cities>
+    @Headers("X-CSCAPI-KEY: RU5uaVpqekRZZlBsVkhRY2ZSTzJNOHNzSGk3U3BpRmdURmpRZ2ZNMA==")
+    @GET("v1/countries/{ISO2}/cities")
+    suspend fun getPostcity(@Path("ISO2") cFlag:String):Response<ArrayList<Cities>>
 
 
 }
